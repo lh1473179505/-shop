@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.shop.dao.MemberMapper">
+	<insert id="insertMember" parameterType="cn.sjxy.shop.domain.Member">
+		insert into member(userName,trueName,password,tel,email)
+		values(#{userName},#{trueName},#{password},#{tel},#{email})
+	</insert>
+	
+	<select id="login" parameterType="cn.sjxy.shop.domain.Member" resultMap="MemberMap" >
+		select userName, password from member
+		where 
+		<if test=" _parameter !=null">userName=#{userName}</if>
+		<if test=" _parameter !=null">and password=${password}</if>
+	</select>
+	<resultMap type="cn.sjxy.shop.domain.Member" id="MemberMap">
+		<result column="userName" property="userName"/>
+		<result column="password" property="password"/>
+	</resultMap>
+</mapper>

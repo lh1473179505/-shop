@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sjxy.shop.dao.GoodsMapper">
+	<select id="findAll" resultType="cn.sjxy.shop.domain.Goods">
+		select * from goods 
+		where newGoods=1
+		 order by inTime desc 
+	</select>
+	
+	<select id="findAll1" resultType="cn.sjxy.shop.domain.Goods">
+		select * from goods 
+		where  sale=1
+		 order by inTime desc limit 0,12 
+	</select>
+	
+	<select id="findAll2" resultType="cn.sjxy.shop.domain.Goods">
+		select * from goods 
+		 order by hit desc limit 0,2 
+	</select>
+	
+	<select id="findById" parameterType="int" resultType="cn.sjxy.shop.domain.Goods">
+		select * from goods 
+		 where id=#{id}
+	</select>
+	
+	
+</mapper>
